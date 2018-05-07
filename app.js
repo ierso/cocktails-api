@@ -6,9 +6,6 @@ const { databaseUrl, port } = config;
 
 const app = express();
 
-import { googleClientID, googleClientSecret } from './config/main';
-console.log(googleClientID, googleClientSecret)
-
 app.listen(port, () => {
     console.log(`listening on ${port}`)
 })

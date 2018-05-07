@@ -1,3 +1,276 @@
-module.exports=function(e){var t={};function o(n){if(t[n])return t[n].exports;var r=t[n]={i:n,l:!1,exports:{}};return e[n].call(r.exports,r,r.exports,o),r.l=!0,r.exports}return o.m=e,o.c=t,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:n})},o.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,"a",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p="",o.w={},o(o.s=16)}([function(e,t){e.exports=require("mongoose")},function(e,t){e.exports=require("express")},function(e,t){e.exports=require("passport")},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={databaseUrl:"mongodb://ierso:6035cp!@ds211440.mlab.com:11440/cocktails-db",port:process.env.PORT||5e3,googleClientID:"21187341593-lc5go41k600chrj3rkm57hqjumjbao3j.apps.googleusercontent.com",googleClientSecret:"7yOiDOH1Ah8XUztgkUahE7md"}},function(e,t){e.exports=require("express-handlebars")},function(e,t){e.exports=require("cookie-parser")},function(e,t){e.exports=require("express-session")},function(e,t){e.exports=require("body-parser")},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n,r=o(0),u=(n=r)&&n.__esModule?n:{default:n};var a=new r.Schema({name:{type:String,required:!0},email:{type:String,required:!0},password:{type:String,required:!0},date:{type:Date,default:Date.now}});t.default=u.default.model("users",a)},function(e,t){e.exports=require("bcryptjs")},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=l(o(1)),r=l(o(9)),u=l(o(2)),a=l(o(8));function l(e){return e&&e.__esModule?e:{default:e}}var s=n.default.Router();s.get("/login",function(e,t){t.render("users/login")}),s.post("/login",u.default.authenticate("local"),function(e,t){t.redirect("/ideas")}),s.get("/register",function(e,t){t.render("users/register")}),s.post("/register",function(e,t){var o=[];e.body.password.length<4&&o.push({text:"Password must be at least 4 characters"}),o.length>0?t.render("users/register",{errors:o,name:e.body.name,email:e.body.email,password:e.body.password}):a.default.findOne({email:e.body.email}).then(function(n){if(n)t.send({text:"Email already exists"}),o.push({text:"Email already exists"});else{var u=new a.default({name:e.body.name,email:e.body.email,password:e.body.password});r.default.genSalt(10,function(e,o){r.default.hash(u.password,o,function(e,o){if(e)throw e;u.password=o,u.save().then(function(e){t.redirect("/users/login")}).catch(function(e){console.log(e)})})})}})}),s.get("/logout",function(e,t){e.logout(),t.send({text:"You have logged out"})}),t.default=s},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n,r=o(0),u=(n=r)&&n.__esModule?n:{default:n};var a=new r.Schema({title:{type:String,required:!0},details:{type:String,required:!0},date:{type:Date,default:Date.now},_user:{type:r.Schema.Types.ObjectId,ref:"users"}});t.default=u.default.model("ideas",a)},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=u(o(1)),r=u(o(11));function u(e){return e&&e.__esModule?e:{default:e}}var a=n.default.Router();a.get("/",function(e,t){r.default.find({}).sort({date:"desc"}).then(function(e){t.render("ideas/index",{ideas:e})})}),a.get("/add",function(e,t){t.render("ideas/add")}),a.delete("/:id",function(e,t){r.default.remove({_id:e.params.id}).then(function(){t.redirect("/")})}),a.post("/",function(e,t){var o=[];if(e.body.title||o.push({text:"Please add a title"}),e.body.details||o.push({text:"Please add a title"}),o.length>0)t.render("ideas/add",{errors:o,title:e.body.title,details:e.body.details});else{console.log(e.user);var n={title:e.body.title,details:e.body.details};new r.default(n).save().then(function(e){t.redirect("/ideas")})}}),t.default=a},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=u(o(1)),r=u(o(2));function u(e){return e&&e.__esModule?e:{default:e}}var a=n.default.Router();a.get("/google",r.default.authenticate("google",{scope:["profile","email"]})),a.get("/google/callback",r.default.authenticate("google",{failureRedirect:"/login"}),function(e,t){t.redirect("/")}),t.default=a},function(e,t){e.exports=require("passport-google-oauth20")},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){e.use(new s({clientID:a,clientSecret:l,callbackURL:"/auth/google/callback",proxy:!0},function(e,t,o,n){console.log(e),console.log(o)}))};var n=u(o(14)),r=(u(o(0)),u(o(3)));function u(e){return e&&e.__esModule?e:{default:e}}var a=r.default.googleClientID,l=r.default.googleClientSecret,s=n.default.Strategy},function(e,t,o){"use strict";var n=y(o(1)),r=y(o(0)),u=y(o(2)),a=o(3),l=y(a),s=y(o(15)),i=y(o(13)),d=y(o(12)),c=y(o(10)),f=y(o(7)),g=y(o(6)),p=y(o(5)),b=y(o(4));function y(e){return e&&e.__esModule?e:{default:e}}var h=l.default.databaseUrl,v=l.default.port,m=(0,n.default)();console.log(a.googleClientID,a.googleClientSecret),m.listen(v,function(){console.log("listening on "+v)}),m.get("/",function(e,t){t.send("index")}),(0,s.default)(u.default),m.use("/auth",i.default),m.use("/ideas",d.default),m.use("/users",c.default),
-//! remove later
-m.use((0,p.default)()),m.use((0,g.default)({secret:"secret",resave:!1,saveUninitialized:!1})),m.use(u.default.initialize()),m.use(u.default.session()),m.use(function(e,t,o){t.locals.user=e.user||null,o()}),r.default.connect(h).then(function(){return console.log("MongoDB Connected")}).catch(function(e){return console.log(e)}),m.engine("handlebars",(0,b.default)({defaultLayout:"main"})),m.set("view engine","handlebars"),m.use(f.default.urlencoded({extended:!1})),m.use(f.default.json())}]);
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// object to store loaded and loading wasm modules
+/******/ 	var installedWasmModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// object with all compiled WebAssembly.Modules
+/******/ 	__webpack_require__.w = {};
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./app.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./app.js":
+/*!****************!*\
+  !*** ./app.js ***!
+  \****************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar _express2 = _interopRequireDefault(_express);\n\nvar _mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\n\nvar _mongoose2 = _interopRequireDefault(_mongoose);\n\nvar _passport = __webpack_require__(/*! passport */ \"passport\");\n\nvar _passport2 = _interopRequireDefault(_passport);\n\nvar _main = __webpack_require__(/*! ./config/main */ \"./config/main.js\");\n\nvar _main2 = _interopRequireDefault(_main);\n\nvar _passport3 = __webpack_require__(/*! ./config/passport */ \"./config/passport.js\");\n\nvar _passport4 = _interopRequireDefault(_passport3);\n\nvar _auth = __webpack_require__(/*! ./routes/auth */ \"./routes/auth.js\");\n\nvar _auth2 = _interopRequireDefault(_auth);\n\nvar _ideas = __webpack_require__(/*! ./routes/ideas */ \"./routes/ideas.js\");\n\nvar _ideas2 = _interopRequireDefault(_ideas);\n\nvar _users = __webpack_require__(/*! ./routes/users */ \"./routes/users.js\");\n\nvar _users2 = _interopRequireDefault(_users);\n\nvar _bodyParser = __webpack_require__(/*! body-parser */ \"body-parser\");\n\nvar _bodyParser2 = _interopRequireDefault(_bodyParser);\n\nvar _expressSession = __webpack_require__(/*! express-session */ \"express-session\");\n\nvar _expressSession2 = _interopRequireDefault(_expressSession);\n\nvar _cookieParser = __webpack_require__(/*! cookie-parser */ \"cookie-parser\");\n\nvar _cookieParser2 = _interopRequireDefault(_cookieParser);\n\nvar _expressHandlebars = __webpack_require__(/*! express-handlebars */ \"express-handlebars\");\n\nvar _expressHandlebars2 = _interopRequireDefault(_expressHandlebars);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar databaseUrl = _main2.default.databaseUrl,\n    port = _main2.default.port;\n\n\nvar app = (0, _express2.default)();\n\napp.listen(port, function () {\n    console.log('listening on ' + port);\n});\n\napp.get('/', function (req, res) {\n    res.send('index');\n});\n\n// passport\n\n(0, _passport4.default)(_passport2.default);\n\n// load routes\n\n// use routes\napp.use('/auth', _auth2.default);\napp.use('/ideas', _ideas2.default);\napp.use('/users', _users2.default);\n\n//! remove later\n\n\napp.use((0, _cookieParser2.default)());\n// session middleware\napp.use((0, _expressSession2.default)({\n    secret: 'secret',\n    resave: false,\n    saveUninitialized: false\n}));\n\napp.use(_passport2.default.initialize());\napp.use(_passport2.default.session());\n\napp.use(function (req, res, next) {\n    res.locals.user = req.user || null;\n    next();\n});\n\n// connect to mongoose\n_mongoose2.default.connect(databaseUrl).then(function () {\n    return console.log('MongoDB Connected');\n}).catch(function (err) {\n    return console.log(err);\n});\n\n// setup middleware for handlebars\napp.engine('handlebars', (0, _expressHandlebars2.default)({ defaultLayout: 'main' }));\napp.set('view engine', 'handlebars');\n\n//setup middleware for parser\napp.use(_bodyParser2.default.urlencoded({ extended: false }));\napp.use(_bodyParser2.default.json());\n\n//# sourceURL=webpack:///./app.js?");
+
+/***/ }),
+
+/***/ "./config/main.js":
+/*!************************!*\
+  !*** ./config/main.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = {\n    databaseUrl: 'mongodb://ierso:6035cp!@ds211440.mlab.com:11440/cocktails-db',\n    port: process.env.PORT || 5000,\n    googleClientID: '21187341593-lc5go41k600chrj3rkm57hqjumjbao3j.apps.googleusercontent.com',\n    googleClientSecret: '7yOiDOH1Ah8XUztgkUahE7md'\n};\n\n//# sourceURL=webpack:///./config/main.js?");
+
+/***/ }),
+
+/***/ "./config/passport.js":
+/*!****************************!*\
+  !*** ./config/passport.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nexports.default = function (passport) {\n    passport.use(new GoogleStrategy({\n        clientID: googleClientID,\n        clientSecret: googleClientSecret,\n        callbackURL: '/auth/google/callback',\n        proxy: true\n    }, function (accessToken, refreshToken, profile, done) {\n        console.log(accessToken);\n        console.log(profile);\n    }));\n};\n\nvar _passportGoogleOauth = __webpack_require__(/*! passport-google-oauth20 */ \"passport-google-oauth20\");\n\nvar _passportGoogleOauth2 = _interopRequireDefault(_passportGoogleOauth);\n\nvar _mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\n\nvar _mongoose2 = _interopRequireDefault(_mongoose);\n\nvar _main = __webpack_require__(/*! ./main */ \"./config/main.js\");\n\nvar _main2 = _interopRequireDefault(_main);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar googleClientID = _main2.default.googleClientID,\n    googleClientSecret = _main2.default.googleClientSecret;\n\nvar GoogleStrategy = _passportGoogleOauth2.default.Strategy;\n\n//# sourceURL=webpack:///./config/passport.js?");
+
+/***/ }),
+
+/***/ "./models/idea.js":
+/*!************************!*\
+  !*** ./models/idea.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\n\nvar _mongoose2 = _interopRequireDefault(_mongoose);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n//create schema\nvar IdeaSchema = new _mongoose.Schema({\n    title: {\n        type: String,\n        required: true\n    },\n    details: {\n        type: String,\n        required: true\n    },\n    date: {\n        type: Date,\n        default: Date.now\n    },\n    _user: {\n        type: _mongoose.Schema.Types.ObjectId,\n        ref: 'users'\n    }\n});\n\nexports.default = _mongoose2.default.model('ideas', IdeaSchema);\n\n//# sourceURL=webpack:///./models/idea.js?");
+
+/***/ }),
+
+/***/ "./models/user.js":
+/*!************************!*\
+  !*** ./models/user.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\n\nvar _mongoose2 = _interopRequireDefault(_mongoose);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n//create schema\nvar UserSchema = new _mongoose.Schema({\n    name: {\n        type: String,\n        required: true\n    },\n    email: {\n        type: String,\n        required: true\n    },\n    password: {\n        type: String,\n        required: true\n    },\n    date: {\n        type: Date,\n        default: Date.now\n    }\n});\n\nexports.default = _mongoose2.default.model('users', UserSchema);\n\n//# sourceURL=webpack:///./models/user.js?");
+
+/***/ }),
+
+/***/ "./routes/auth.js":
+/*!************************!*\
+  !*** ./routes/auth.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar _express2 = _interopRequireDefault(_express);\n\nvar _passport = __webpack_require__(/*! passport */ \"passport\");\n\nvar _passport2 = _interopRequireDefault(_passport);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar router = _express2.default.Router();\n\nrouter.get('/google', _passport2.default.authenticate('google', { scope: ['profile', 'email'] }));\n\nrouter.get('/google/callback', _passport2.default.authenticate('google', { failureRedirect: '/login' }), function (req, res) {\n    // Successful authentication, redirect home.\n    res.redirect('/');\n});\n\nexports.default = router;\n\n//# sourceURL=webpack:///./routes/auth.js?");
+
+/***/ }),
+
+/***/ "./routes/ideas.js":
+/*!*************************!*\
+  !*** ./routes/ideas.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar _express2 = _interopRequireDefault(_express);\n\nvar _idea = __webpack_require__(/*! ../models/idea */ \"./models/idea.js\");\n\nvar _idea2 = _interopRequireDefault(_idea);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar router = _express2.default.Router();\n\n// load idea model\n\n\n// idea index\nrouter.get('/', function (req, res) {\n    //grab all of the objects in db\n\n    _idea2.default.find({}).sort({ date: 'desc' }).then(function (ideas) {\n        res.render('ideas/index', {\n            ideas: ideas\n        });\n    });\n\n    // send json \n    // Idea.find({})\n    //     .sort({date: 'desc'})\n    //     .then(ideas => {\n    //         res.send(ideas)\n    //     })\n});\n\nrouter.get('/add', function (req, res) {\n    res.render('ideas/add');\n});\n\n// delete \nrouter.delete('/:id', function (req, res) {\n    _idea2.default.remove({ _id: req.params.id }).then(function () {\n        res.redirect('/');\n    });\n});\n\n// process form \nrouter.post('/', function (req, res) {\n    var errors = [];\n    if (!req.body.title) {\n        errors.push({ text: 'Please add a title' });\n    }\n    if (!req.body.details) {\n        errors.push({ text: 'Please add a title' });\n    }\n    if (errors.length > 0) {\n        res.render('ideas/add', {\n            errors: errors,\n            title: req.body.title,\n            details: req.body.details\n        });\n    } else {\n        console.log(req.user);\n        var newIdea = {\n            title: req.body.title,\n            details: req.body.details\n        };\n        new _idea2.default(newIdea).save().then(function (idea) {\n            res.redirect('/ideas');\n        });\n    }\n});\n\nexports.default = router;\n\n//# sourceURL=webpack:///./routes/ideas.js?");
+
+/***/ }),
+
+/***/ "./routes/users.js":
+/*!*************************!*\
+  !*** ./routes/users.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar _express2 = _interopRequireDefault(_express);\n\nvar _bcryptjs = __webpack_require__(/*! bcryptjs */ \"bcryptjs\");\n\nvar _bcryptjs2 = _interopRequireDefault(_bcryptjs);\n\nvar _passport = __webpack_require__(/*! passport */ \"passport\");\n\nvar _passport2 = _interopRequireDefault(_passport);\n\nvar _user = __webpack_require__(/*! ../models/user */ \"./models/user.js\");\n\nvar _user2 = _interopRequireDefault(_user);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar router = _express2.default.Router();\n\n// user login route\nrouter.get('/login', function (req, res) {\n    res.render('users/login');\n});\n\n// user login POST\nrouter.post('/login', _passport2.default.authenticate('local'), function (req, res) {\n    res.redirect('/ideas');\n});\n\n// user register\nrouter.get('/register', function (req, res) {\n    res.render('users/register');\n});\n\n// register form POST\nrouter.post('/register', function (req, res) {\n    var errors = [];\n\n    if (req.body.password.length < 4) {\n        errors.push({ text: 'Password must be at least 4 characters' });\n    }\n\n    if (errors.length > 0) {\n        res.render('users/register', {\n            errors: errors,\n            name: req.body.name,\n            email: req.body.email,\n            password: req.body.password\n        });\n    } else {\n        _user2.default.findOne({ email: req.body.email }).then(function (user) {\n            if (user) {\n                res.send({ text: 'Email already exists' });\n                errors.push({ text: 'Email already exists' });\n            } else {\n                var newUser = new _user2.default({\n                    name: req.body.name,\n                    email: req.body.email,\n                    password: req.body.password\n                });\n                _bcryptjs2.default.genSalt(10, function (err, salt) {\n                    _bcryptjs2.default.hash(newUser.password, salt, function (err, hash) {\n                        if (err) throw err;\n                        newUser.password = hash;\n                        newUser.save().then(function (user) {\n                            res.redirect('/users/login');\n                        }).catch(function (err) {\n                            console.log(err);\n                            return;\n                        });\n                    });\n                });\n            }\n        });\n    }\n});\n\n//log out\nrouter.get('/logout', function (req, res) {\n    req.logout();\n    res.send({\n        text: 'You have logged out'\n    });\n});\n\nexports.default = router;\n\n//# sourceURL=webpack:///./routes/users.js?");
+
+/***/ }),
+
+/***/ "bcryptjs":
+/*!***************************!*\
+  !*** external "bcryptjs" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"bcryptjs\");\n\n//# sourceURL=webpack:///external_%22bcryptjs%22?");
+
+/***/ }),
+
+/***/ "body-parser":
+/*!******************************!*\
+  !*** external "body-parser" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"body-parser\");\n\n//# sourceURL=webpack:///external_%22body-parser%22?");
+
+/***/ }),
+
+/***/ "cookie-parser":
+/*!********************************!*\
+  !*** external "cookie-parser" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"cookie-parser\");\n\n//# sourceURL=webpack:///external_%22cookie-parser%22?");
+
+/***/ }),
+
+/***/ "express":
+/*!**************************!*\
+  !*** external "express" ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
+
+/***/ }),
+
+/***/ "express-handlebars":
+/*!*************************************!*\
+  !*** external "express-handlebars" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express-handlebars\");\n\n//# sourceURL=webpack:///external_%22express-handlebars%22?");
+
+/***/ }),
+
+/***/ "express-session":
+/*!**********************************!*\
+  !*** external "express-session" ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express-session\");\n\n//# sourceURL=webpack:///external_%22express-session%22?");
+
+/***/ }),
+
+/***/ "mongoose":
+/*!***************************!*\
+  !*** external "mongoose" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"mongoose\");\n\n//# sourceURL=webpack:///external_%22mongoose%22?");
+
+/***/ }),
+
+/***/ "passport":
+/*!***************************!*\
+  !*** external "passport" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"passport\");\n\n//# sourceURL=webpack:///external_%22passport%22?");
+
+/***/ }),
+
+/***/ "passport-google-oauth20":
+/*!******************************************!*\
+  !*** external "passport-google-oauth20" ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"passport-google-oauth20\");\n\n//# sourceURL=webpack:///external_%22passport-google-oauth20%22?");
+
+/***/ })
+
+/******/ });
