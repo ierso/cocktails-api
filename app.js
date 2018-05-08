@@ -1,21 +1,30 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import config from './config/main';
 const { databaseUrl, port } = config;
 
 const app = express();
 
-app.listen(port, () => {
-    console.log(`listening on ${port}`)
-})
+app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}))
 
-app.get('/', ( req, res ) => {
-    res.send('index');
-})
+app.use(passport.initialize());
+app.use(passport.session());
+
+mongoose.connect(databaseUrl)
+    .then(() => console.log('mongoDb connected'))
+    .catch(((err) => console.log(err)))
+
+mongoose.Promise = global.Promise
 
 // passport
-
 import configPassport from './config/passport';
 configPassport(passport)
 
@@ -27,3 +36,10 @@ import users from './routes/users';
 app.use('/auth', auth);
 app.use('/ideas', ideas);
 app.use('/users', users);
+
+app.listen(port, () => {
+    console.log(`listening on ${port}`)
+})
+app.get('/', ( req, res ) => {
+    res.send('index');
+})
