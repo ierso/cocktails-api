@@ -3,13 +3,15 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import bodyParser from 'body-parser';
 import config from './config/main';
 import auth from './routes/auth';
-import ideas from './routes/ideas';
-import users from './routes/users';
+import cocktails from './routes/cocktails';
 const { databaseUrl, port } = config;
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(cookieParser());
 app.use(session({
@@ -38,8 +40,7 @@ configPassport(passport)
 
 // use routes
 app.use('/auth', auth);
-app.use('/ideas', ideas);
-app.use('/users', users);
+app.use('/cocktails', cocktails);
 
 app.get('/', ( req, res ) => {
     res.send('index');
