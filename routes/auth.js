@@ -14,16 +14,16 @@ router.get('/google/callback',
 });
 
 router.get('/verify', (req, res) => {
-    if(req.user) {
-        console.log(req.user);
+    if (req.user) {
+        res.send(req.user);
     } else {
-        console.log('not auth')
+        console.log('Not Auth')
     }
-});
+})
 
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
-});
+})
 
 export default router;

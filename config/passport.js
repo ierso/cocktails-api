@@ -26,7 +26,8 @@ export default function (passport) {
                 if (user) {
                     done(null, user)
                 } else {
-                    new User(newUser).save()
+                    new User(newUser)
+                        .save()
                         .then(user => done(null, user))
                 }
             })
