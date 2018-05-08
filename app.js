@@ -4,6 +4,9 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import config from './config/main';
+import auth from './routes/auth';
+import ideas from './routes/ideas';
+import users from './routes/users';
 const { databaseUrl, port } = config;
 
 const app = express();
@@ -18,6 +21,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
+
 mongoose.connect(databaseUrl)
     .then(() => console.log('mongoDb connected'))
     .catch(((err) => console.log(err)))
@@ -28,18 +36,13 @@ mongoose.Promise = global.Promise
 import configPassport from './config/passport';
 configPassport(passport)
 
-// load routes
-import auth from './routes/auth';
-import ideas from './routes/ideas';
-import users from './routes/users';
 // use routes
 app.use('/auth', auth);
 app.use('/ideas', ideas);
 app.use('/users', users);
 
-app.listen(port, () => {
-    console.log(`listening on ${port}`)
-})
 app.get('/', ( req, res ) => {
     res.send('index');
 })
+
+app.listen(port);
