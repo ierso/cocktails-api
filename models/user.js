@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 //create schema
 const UserSchema = new Schema({
-    name: {
+    googleID: {
         type: String,
         required: true
     },
@@ -10,13 +10,11 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    password: {
-        type: String,
-        required: true
+    firstName: {
+        type: String
     },
-    date: {
-        type: Date,
-        default: Date.now
+    lastName: {
+        type: String
     }
 })
 

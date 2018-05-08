@@ -1,24 +1,30 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import config from './config/main';
 const { databaseUrl, port } = config;
 
 const app = express();
 
-import { googleClientID, googleClientSecret } from './config/main';
-console.log(googleClientID, googleClientSecret)
+app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}))
 
-app.listen(port, () => {
-    console.log(`listening on ${port}`)
-})
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get('/', ( req, res ) => {
-    res.send('index');
-})
+mongoose.connect(databaseUrl)
+    .then(() => console.log('mongoDb connected'))
+    .catch(((err) => console.log(err)))
+
+mongoose.Promise = global.Promise
 
 // passport
-
 import configPassport from './config/passport';
 configPassport(passport)
 
@@ -31,56 +37,9 @@ app.use('/auth', auth);
 app.use('/ideas', ideas);
 app.use('/users', users);
 
-
-
-
-
-
-import bodyParser from 'body-parser';
-import session from 'express-session';
-import cookieParser from 'cookie-parser';
-
-//! remove later
-import exphbs from 'express-handlebars';
-
-
-
-
-
-
-
-
-
-
-app.use(cookieParser());
-// session middleware
-app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false,
-}))
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(function(req, res, next) {
-    res.locals.user = req.user || null;
-    next();
-});
-
-
-// connect to mongoose
-mongoose.connect(databaseUrl)
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
-
-
-
-// setup middleware for handlebars
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
-//setup middleware for parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
+app.listen(port, () => {
+    console.log(`listening on ${port}`)
+})
+app.get('/', ( req, res ) => {
+    res.send('index');
+})
