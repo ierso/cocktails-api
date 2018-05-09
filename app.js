@@ -43,7 +43,11 @@ app.use('/auth', auth);
 app.use('/cocktails', cocktails);
 
 app.get('/', ( req, res ) => {
-    res.send('index');
+    res.send({text: 'hello there'});
 })
+
+app.get('/api/hello', (req, res) => {
+    res.send({ express: 'Hello From Express' });
+});
 
 app.listen(port);
