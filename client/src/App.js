@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import IngredientSearch from './containers/ingredientSearch';
-import './App.css';
+import CocktailsList from './containers/cocktailList';
+import NotFound from './components/notFound';
 
 class App extends Component {
-
-  componentWillMount() {
-    // this.fetchData();
-  }
-
-  // fetchData = async () => {
-  //   const res = await axios('/auth/verify');
-  //   return res;
-  // }
-
   render() {
     return (
       <div className="App">
         <a href="/auth/google">Login</a>
         <br></br>
         <a href="/auth/verify">Verify</a>
-        <IngredientSearch />
+        <Router>
+            <Switch>
+                <Route exact path='/' component={ IngredientSearch } />
+                <Route exact path='/ingredient/:name' component={ CocktailsList } />
+                <Route component={ NotFound } />
+            </Switch>
+        </Router>
       </div>
     );
   }
