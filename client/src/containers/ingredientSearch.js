@@ -18,7 +18,7 @@ class IngredientSearch extends Component {
     // ON SUBMIT
     onSearchSubmit = (event) => {
         event.preventDefault();
-        console.log('from submit');
+        console.log('form submit');
     }
 
     render() {
@@ -32,7 +32,7 @@ class IngredientSearch extends Component {
                         type="text" 
                         name="ingredient-search"
                     />
-                    <SearchDropdown ingredients={this.props.matchedIngredients}/>
+                    <SearchDropdown matchedIngredients={this.props.matchedIngredients}/>
                     <button type="submit">Search</button>
                 </form>
             </React.Fragment>
