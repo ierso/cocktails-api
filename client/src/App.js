@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import IngredientSearch from './containers/ingredientSearch';
+import CocktailList from './containers/cocktailList';
 
 import axios from 'axios';
 
@@ -22,6 +23,7 @@ class App extends Component {
         <br></br>
         <a href="/auth/verify">Verify</a>
         <IngredientSearch />
+        <CocktailList/>
       </div>
     );
   }

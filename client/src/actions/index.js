@@ -1,5 +1,5 @@
-import { FETCH_INGREDIENTS } from './types';
-import { MATCH_INGREDIENTS } from './types';
+import { FETCH_INGREDIENTS, MATCH_INGREDIENTS, FETCH_COCKTAILS } from './types';
+
 import { findMatches, returnMax } from '../helpers';
 import axios from 'axios';
 
@@ -17,4 +17,9 @@ export const matchIngredients = (searchInput, array) => dispatch => {
         res = returnMax(maxNum, res)
     }
     dispatch({ type: MATCH_INGREDIENTS, payload: res })
+}
+
+export const fetchCocktails = (ingredient) => async dispatch => {
+    const res = await axios.get(`${ROOT_URL}filter.php?i=Vodka`);
+    dispatch({ type: FETCH_COCKTAILS, payload: res.data.drinks });
 }

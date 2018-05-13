@@ -6,7 +6,7 @@ const SearchDropdown = (props) => {
 
     if (matchedIngredients.length > 0) {
         return (
-            <div>
+            <React.Fragment>
                 {matchedIngredients.map((ingredient, index) => {
                     return (
                         <div key={index}>
@@ -14,7 +14,7 @@ const SearchDropdown = (props) => {
                         </div>
                     )
                 })}
-            </div>
+            </React.Fragment>
         )
     } else {
         return (
