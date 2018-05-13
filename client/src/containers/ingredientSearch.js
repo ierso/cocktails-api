@@ -4,23 +4,19 @@ import { fetchIngredients, matchIngredients } from '../actions';
 import SearchDropdown from '../components/searchDropdown';
 
 class IngredientSearch extends Component {
-    // GET DATA
     componentWillMount() {
         this.props.fetchIngredients();
     }
-    // ON INPUT CHANGE
     onSearchChange = () => {
         const searchInput = {
             input: this.searchIngredient.value
         }
         this.props.matchIngredients(searchInput.input, this.props.ingredients);
     }
-    // ON SUBMIT
     onSearchSubmit = (event) => {
         event.preventDefault();
         console.log('form submit');
     }
-
     render() {
         return (
             <React.Fragment>
