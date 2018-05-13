@@ -4,7 +4,7 @@ const router = express.Router();
 import Cocktail from '../models/cocktail';
 
 // get all
-router.get('/', requireLogin, (req, res) => {
+router.get('/', (req, res) => {
     //grab all of the objects in db
     Cocktail.find({ user: req.user.id })
         .sort({date: 'desc'})
