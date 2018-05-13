@@ -1,6 +1,7 @@
-# COCKTAILS REST API
+# COCKTAILS APP
 
-This project is built with Node Express and Passport
+Backend: Node Express and Passport.
+Frontend: React and Redux.
 
 ## Build & development
 
