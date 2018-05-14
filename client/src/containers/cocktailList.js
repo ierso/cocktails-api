@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCocktails } from '../actions';
 
@@ -7,7 +8,6 @@ class CocktailList extends Component {
     componentWillMount() {
         this.props.fetchCocktails();
     }
-
     renderCocktails = () => {
         const cocktails = this.props.cocktails;
         if (cocktails) {
@@ -26,7 +26,6 @@ class CocktailList extends Component {
             )
         }
     }
-
     render() {
         return (
             <React.Fragment>
@@ -37,7 +36,13 @@ class CocktailList extends Component {
     }
 }
 
-function mapStateToProps (state) {
+CocktailList.propTypes = {
+    fetchCocktails: PropTypes.func,
+    cocktails: PropTypes.array,
+}
+
+
+const mapStateToProps = (state) => {
     return {
         cocktails: state.cocktails
     }

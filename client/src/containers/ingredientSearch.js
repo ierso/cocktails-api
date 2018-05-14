@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchIngredients, matchIngredients } from '../actions';
 import SearchDropdown from '../components/searchDropdown';
@@ -36,10 +37,17 @@ class IngredientSearch extends Component {
     }
 }
 
-function mapStateToProps (state) {
+IngredientSearch.propTypes = {
+    ingredients: PropTypes.array,
+    matchedIngredients: PropTypes.array,
+    fetchIngredients: PropTypes.func,
+    matchIngredients: PropTypes.func
+}
+
+const mapStateToProps = (state) => {
 	return { 
         ingredients: state.ingredients,
-        matchedIngredients: state.matchIngredients
+        matchedIngredients: state.matchIngredients,
 	}
 }
 export default connect(mapStateToProps, { fetchIngredients, matchIngredients })(IngredientSearch);
