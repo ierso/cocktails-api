@@ -3,7 +3,6 @@ import React from 'react';
 const SearchDropdown = (props) => {
 
     const matchedIngredients = props.matchedIngredients;
-    console.log(matchedIngredients);
 
     if (matchedIngredients.length > 0) {
         return (

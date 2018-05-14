@@ -6,7 +6,8 @@ import { fetchCocktails } from '../actions';
 class CocktailList extends Component {
 
     componentWillMount() {
-        this.props.fetchCocktails();
+        const ingredient = this.props.match.params.name;
+        this.props.fetchCocktails(ingredient);
     }
     renderCocktails = () => {
         const cocktails = this.props.cocktails;

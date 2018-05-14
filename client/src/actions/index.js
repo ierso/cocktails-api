@@ -20,6 +20,6 @@ export const matchIngredients = (searchInput, array) => dispatch => {
 }
 
 export const fetchCocktails = (ingredient) => async dispatch => {
-    const res = await axios.get(`${ROOT_URL}filter.php?i=Vodka`);
+    const res = await axios.get(`${ROOT_URL}filter.php?i=${ingredient}`);
     dispatch({ type: FETCH_COCKTAILS, payload: res.data.drinks });
 }
