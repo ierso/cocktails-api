@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchDropdown = (props) => {
 
@@ -10,7 +11,9 @@ const SearchDropdown = (props) => {
                 {matchedIngredients.map((ingredient, index) => {
                     return (
                         <div key={index}>
-                            {ingredient.strIngredient1}
+                            <Link to={`ingredient/${ingredient.strIngredient1}`}>
+                                {ingredient.strIngredient1}
+                            </Link>
                         </div>
                     )
                 })}
