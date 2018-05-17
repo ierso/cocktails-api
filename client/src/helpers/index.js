@@ -12,3 +12,11 @@ export const findMatches = (wordToMatch, array) => {
         }
     })
 }
+
+export const getMiddle = (arr) => Math.floor(arr.length / 2);
+
+export const halfArrays = (arr, middle) => {
+  const firstHalf = [...arr.slice(0, 1), ...arr.slice(1, middle)]
+  const secondHalf = [...arr.slice(middle, 0), ...arr.slice(middle)]
+  return [...[firstHalf], ...[secondHalf]];
+}
