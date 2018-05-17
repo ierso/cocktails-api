@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCocktail } from '../actions';
+import IngredientMeasurements from '../components/ingredientMeasurements';
 
 class Cocktail extends Component {
     componentWillMount() {
-        this.props.fetchCocktail();
+        const paramId = this.props.match.params.id
+        this.props.fetchCocktail(paramId);
     }
 
     render(){
         const cocktail = this.props.cocktail;
-        console.log(cocktail)
+
         if (Object.keys(cocktail).length !== 0) {
             return (
                 <React.Fragment>
                     <h1>Cocktail</h1>
-                    <h2>{cocktail.idDrink}</h2>
                     <h3>{cocktail.strDrink}</h3>
-                    <h4>Glass: {cocktail.strDrink.strGlass}</h4>
+                    <h4>Glass: {cocktail.strGlass}</h4>
                     <p>Instructions:</p>
                     <p>{cocktail.strInstructions}</p>
+                    <IngredientMeasurements cocktail={cocktail}/>
                 </React.Fragment>
             )
         } else {
@@ -29,12 +32,18 @@ class Cocktail extends Component {
                 </React.Fragment>
             )
         }
+
     }
 }
 
-function mapStateToProps(state){
+Cocktail.propTypes = {
+    fetchCocktail: PropTypes.func,
+    cocktail: PropTypes.object
+}
+
+const mapStateToProps = (state) => { 
     return {
-        cocktail: state.cocktail
+        cocktail: state.cocktail 
     }
 }
 

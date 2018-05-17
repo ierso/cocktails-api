@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCocktails } from '../actions';
 
@@ -16,7 +17,11 @@ class CocktailList extends Component {
                 <React.Fragment>
                     {cocktails.map((cocktail, index)=>{
                         return (
-                            <div key={index}>{cocktail.strDrink}</div>
+                            <div key={index}>
+                                <Link to={`/cocktail/${cocktail.idDrink}`}>
+                                    {cocktail.strDrink}
+                                </Link>
+                            </div>
                         )
                     })}
                 </React.Fragment> 
@@ -44,6 +49,7 @@ CocktailList.propTypes = {
 
 
 const mapStateToProps = (state) => {
+    console.log(state.cocktails)
     return {
         cocktails: state.cocktails
     }
