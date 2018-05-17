@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Cocktail from './containers/cocktail';
+import CocktailsList from './containers/cocktailList';
 import Header from './components/header';
 import IngredientSearch from './containers/ingredientSearch';
-import CocktailsList from './containers/cocktailList';
 import NotFound from './components/notFound';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
             <Switch>
                 <Route exact path='/' component={ IngredientSearch } />
                 <Route exact path='/ingredient/:name' component={ CocktailsList } />
+                <Route exact path='/cocktail/:id' component={ Cocktail } />
                 <Route component={ NotFound } />
             </Switch>
         </Router>

@@ -28,7 +28,7 @@ class IngredientSearch extends Component {
                         ref={ (input) => this.searchIngredient = input }
                         type="text" 
                         name="ingredient-search"
-                        autocomplete="off"
+                        autoComplete="off"
                     />
                     <SearchDropdown matchedIngredients={this.props.matchedIngredients}/>
                     <button type="submit">Search</button>
