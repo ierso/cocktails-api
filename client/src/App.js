@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Cocktail from './containers/cocktail';
+import Cocktail from './containers/cocktail/cocktail';
 import CocktailsList from './containers/cocktailList';
 import Header from './components/header';
 import IngredientSearch from './containers/ingredientSearch';
 import NotFound from './components/notFound';
-
 import styles from './App.css';
-console.log(styles);
 
 class App extends Component {
   render() {
