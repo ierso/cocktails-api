@@ -6,12 +6,12 @@ export default function(props) {
     const measurements = [];
     Object.keys(cocktail).forEach(function(key,index) {
         if (key.toString().startsWith('strIngredient')) {
-            if (cocktail[key].length > 1) {
+            if (cocktail[key] !== null && cocktail[key].length > 1) {                
                 ingredients.push(cocktail[key]);
             }
         }
         if (key.toString().startsWith('strMeasure')) {
-            if (cocktail[key].length > 1) {
+            if (cocktail[key] !== null && cocktail[key].length > 1) {
                 measurements.push(cocktail[key]);
             }
         } 
