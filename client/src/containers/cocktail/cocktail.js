@@ -8,6 +8,15 @@ import CocktailHeader from '../../components/cocktailHeader/cocktailHeader';
 import styles from './cocktail.css';
 
 class Cocktail extends Component {
+
+    //remove later
+    constructor() {
+        super();
+        this.state = {
+            rating: null
+        }
+    }
+    
     componentWillMount() {
         const paramId = this.props.match.params.id
         this.props.fetchCocktail(paramId);
@@ -23,6 +32,10 @@ class Cocktail extends Component {
         console.log(drinkData);
     }
 
+    onStarClick = (nextValue, prevValue, name) => {
+        console.log(nextValue);
+    }
+
     render(){
         const cocktail = this.props.cocktail;
 
@@ -32,7 +45,12 @@ class Cocktail extends Component {
                     <CocktailHeader 
                         clickFavorite={this.clickFavorite}
                         cocktailName={cocktail.strDrink}
+                        rating={this.state.rating}
+                        onStarClick={this.onStarClick}
                     />
+
+
+
                     <h4>Glass: {cocktail.strGlass}</h4>
                     <p>Instructions:</p>
                     <p>{cocktail.strInstructions}</p>

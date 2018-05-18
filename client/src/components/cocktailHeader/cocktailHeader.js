@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './cocktailHeader.css';
 import FontAwesome from 'react-fontawesome';
+import StarRating from 'react-star-rating-component';
 
 export default function(props) {
     return (
@@ -20,7 +21,12 @@ export default function(props) {
                     </h1>
                 </div>
                 <div className={styles.rating}>
-                    Rating
+                <StarRating 
+                    name="rate1" 
+                    starCount={5}
+                    value={props.rating}
+                    onStarClick={props.onStarClick.bind(this)}
+                />
                 </div>
             </div>
         </React.Fragment>
