@@ -1,3 +1,7 @@
 .App {
   border: red solid 3px;
+  display: flex;
+  &:hover {
+    border: blue solid 3px;
+  }
 }
