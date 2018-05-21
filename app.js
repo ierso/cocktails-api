@@ -42,8 +42,4 @@ configPassport(passport)
 app.use('/auth', auth);
 app.use('/cocktails', cocktails);
 
-app.get('/api/hello', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-});
-
 app.listen(port);

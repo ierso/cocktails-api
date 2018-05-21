@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCocktail } from '../../actions';
+import { fetchCocktail, addToFavorites } from '../../actions';
 import IngredientMeasurements from '../../components/ingredientMeasurements';
 import CocktailHeader from '../../components/cocktailHeader/cocktailHeader';
 
@@ -23,22 +23,25 @@ class Cocktail extends Component {
     }
 
     clickFavorite = () => {
-        console.log('favorited');
-        const { strDrink: name, idDrink } = this.props.cocktail;
-        const drinkData = {
+        console.log(this.state.rating);
+        const { strDrink: name, idDrink:drinkID } = this.props.cocktail;
+        const cocktailData = {
             name: name,
-            drinkID: idDrink,
+            drinkID: drinkID,
+            rating: 5,
         }
-        console.log(drinkData);
+        // this.props.addToFavorites(cocktailData);
     }
 
     onStarClick = (nextValue, prevValue, name) => {
-        console.log(nextValue);
+        this.setState({
+            rating: nextValue
+        })
     }
 
     render(){
         const cocktail = this.props.cocktail;
-
+    
         if (Object.keys(cocktail).length !== 0) {
             return (
                 <React.Fragment>
@@ -48,9 +51,6 @@ class Cocktail extends Component {
                         rating={this.state.rating}
                         onStarClick={this.onStarClick}
                     />
-
-
-
                     <h4>Glass: {cocktail.strGlass}</h4>
                     <p>Instructions:</p>
                     <p>{cocktail.strInstructions}</p>
@@ -76,8 +76,9 @@ Cocktail.propTypes = {
 
 const mapStateToProps = (state) => { 
     return {
+        auth: state.auth,
         cocktail: state.cocktail 
     }
 }
 
-export default connect(mapStateToProps, { fetchCocktail })(Cocktail);
+export default connect(mapStateToProps, { fetchCocktail, addToFavorites })(Cocktail);

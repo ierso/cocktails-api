@@ -13,6 +13,15 @@ router.get('/', (req, res) => {
         })
 })
 
+// get extra cocktail data by id
+router.get('/:id', (req, res) => {
+    //grab all of the objects in db
+    Cocktail.find({drinkID: req.params.id})
+        .then((cocktails) => {
+            res.send(cocktails);
+        });
+})
+
 // delete
 router.delete('/:id', (req, res) => {
     Cocktail.remove({_id: req.params.id})

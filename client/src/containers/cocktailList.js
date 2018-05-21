@@ -49,7 +49,6 @@ CocktailList.propTypes = {
 
 
 const mapStateToProps = (state) => {
-    console.log(state.cocktails)
     return {
         cocktails: state.cocktails
     }
