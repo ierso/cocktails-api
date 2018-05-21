@@ -4,3 +4,35 @@
     border: blue solid 3px;
   }
 }
+.switch-wrapper {
+  position: relative;
+  border:red solid 2px;
+}
+.switch-wrapper > div {
+  position: absolute;
+}
+.switchRule {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  & > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+.rules {
+  padding-top: 5rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
+  border: #ddd solid 2px;
+}
+.screen {
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+}
