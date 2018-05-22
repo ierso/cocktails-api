@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchCocktail, addToFavorites } from '../../actions';
 import IngredientMeasurements from '../../components/ingredientMeasurements';
 import CocktailHeader from '../../components/cocktailHeader/cocktailHeader';
+import CocktailInstructions from '../../components/cocktailInstructions/cocktailInstructions';
 
 import styles from './cocktail.css';
 
@@ -51,10 +52,12 @@ class Cocktail extends Component {
                         rating={this.state.rating}
                         onStarClick={this.onStarClick}
                     />
-                    <h4>Glass: {cocktail.strGlass}</h4>
-                    <p>Instructions:</p>
-                    <p>{cocktail.strInstructions}</p>
                     <IngredientMeasurements cocktail={cocktail}/>
+                    <h4>Glass: {cocktail.strGlass}</h4>
+                    
+                    <CocktailInstructions instruction={cocktail.strInstructions} />
+                    
+                    
                 </React.Fragment>
             )
         } else {

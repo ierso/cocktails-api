@@ -1,5 +1,7 @@
 .header {
     border: blue solid 1px;
+    background-color: teal;
+    padding: 1.5em 1.5em;
 }
     .favorite {
 
@@ -14,6 +16,7 @@
     }
 
 .heart {
+    font-size: 1.35em;
     &:before {
         content: "\f08a";
     }
@@ -21,6 +24,7 @@
         cursor: pointer;
         &:before {
             content: "\f004";
+            color: tomato;
         }
     }
 }

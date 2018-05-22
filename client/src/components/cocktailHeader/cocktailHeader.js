@@ -12,7 +12,6 @@ export default function(props) {
                         onClick={props.clickFavorite}
                         className={styles.heart}
                         name='heart'
-                        size='2x'
                     />
                 </div>
                 <div className={styles.name}>

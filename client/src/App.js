@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
         <div className={styles.screen}>
           <Header />
@@ -32,7 +33,7 @@ class App extends Component {
                 >
                   <Route exact path='/' component={ IngredientSearch } />
                   <Route exact path='/ingredient/:name' component={ CocktailsList } />
-                  <Route exact path='/cocktail/:id' component={ Cocktail } />
+                  <Route path='/cocktail/:id' component={ Cocktail } />
                   <Route component={ NotFound } />
                 </AnimatedSwitch>
               </div>
