@@ -10,6 +10,12 @@ class CocktailList extends Component {
         const ingredient = this.props.match.params.name;
         this.props.fetchCocktails(ingredient);
     }
+    componentWillReceiveProps(nextProps) {
+        if (this.props.match.params.name !== nextProps.match.params.name) {
+            const ingredient = nextProps.match.params.name;
+            this.props.fetchCocktails(ingredient);
+        }
+    }
     renderCocktails = () => {
         const cocktails = this.props.cocktails;
         if (cocktails) {

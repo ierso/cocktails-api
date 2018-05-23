@@ -28,12 +28,13 @@ class App extends Component {
               <div className={styles.bgBlue}></div>
               <div className={styles.content}>
                 <Header />
+                <IngredientSearch />
                 <AnimatedSwitch
                   {...pageTransitions}
                   mapStyles={mapStyles}
                   className={styles.switchRule}
                 >
-                  <Route exact path='/' component={ IngredientSearch } />
+                  <Route exact path='/' component={ NotFound } />
                   <Route exact path='/ingredient/:name' component={ CocktailsList } />
                   <Route path='/cocktail/:id' component={ Cocktail } />
                   <Route component={ NotFound } />

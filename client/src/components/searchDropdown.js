@@ -11,7 +11,7 @@ const SearchDropdown = (props) => {
                 {matchedIngredients.map((ingredient, index) => {
                     return (
                         <div key={index}>
-                            <Link to={`ingredient/${ingredient.strIngredient1}`}>
+                            <Link to={`/ingredient/${ingredient.strIngredient1}`}>
                                 {ingredient.strIngredient1}
                             </Link>
                         </div>
