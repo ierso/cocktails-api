@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from './actions';
 import Cocktail from './containers/cocktail/cocktail';
 import CocktailsList from './containers/cocktailList';
-import Header from './components/header';
+import Header from './components/header/header';
 import IngredientSearch from './containers/ingredientSearch';
 import NotFound from './components/notFound';
 
@@ -22,10 +22,12 @@ class App extends Component {
   render() {
 
     return (
-        <div className={styles.screen}>
-          <Header />
+        <div className={styles.body}>
           <Router>
-              <div className={styles.rules}>
+            <div className={styles.wrapper}>
+              <div className={styles.bgBlue}></div>
+              <div className={styles.content}>
+                <Header />
                 <AnimatedSwitch
                   {...pageTransitions}
                   mapStyles={mapStyles}
@@ -37,6 +39,7 @@ class App extends Component {
                   <Route component={ NotFound } />
                 </AnimatedSwitch>
               </div>
+            </div>
           </Router>
         </div>
     );
