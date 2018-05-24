@@ -5,6 +5,7 @@ import { fetchUser } from './actions';
 import Cocktail from './containers/cocktail/cocktail';
 import CocktailsList from './containers/cocktailList';
 import Header from './components/header/header';
+import Message from './components/message/message';
 import IngredientSearch from './containers/ingredientSearch';
 import NotFound from './components/notFound';
 
@@ -28,17 +29,22 @@ class App extends Component {
               <div className={styles.bgBlue}></div>
               <div className={styles.content}>
                 <Header />
-                <IngredientSearch />
-                <AnimatedSwitch
-                  {...pageTransitions}
-                  mapStyles={mapStyles}
-                  className={styles.switchRule}
-                >
-                  <Route exact path='/' component={ NotFound } />
-                  <Route exact path='/ingredient/:name' component={ CocktailsList } />
-                  <Route path='/cocktail/:id' component={ Cocktail } />
-                  <Route component={ NotFound } />
-                </AnimatedSwitch>
+                <div className={styles.search}>
+                  <Message/>
+                  <IngredientSearch />
+                </div>
+                <div className={styles.result}>
+                  <AnimatedSwitch
+                    {...pageTransitions}
+                    mapStyles={mapStyles}
+                    className={styles.switchRule}
+                  >
+                    <Route exact path='/' component={ NotFound } />
+                    <Route exact path='/ingredient/:name' component={ CocktailsList } />
+                    <Route path='/cocktail/:id' component={ Cocktail } />
+                    <Route component={ NotFound } />
+                  </AnimatedSwitch>
+                </div>
               </div>
             </div>
           </Router>

@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import 'normalize.css';
 import WebFont from 'webfontloader';
+import 'normalize.css';
 
 WebFont.load({
     google: {
-      families: ['Montserrat:400,500', 'Lato:400,700', 'sans-serif']
+      families: ['Montserrat:400,500,800', 'Lato:400,700', 'sans-serif']
     }
 });
 
