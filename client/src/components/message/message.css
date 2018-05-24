@@ -1,10 +1,10 @@
 .wrapper {
-
 }
     .copy {
         font-weight: 800;
         text-transform: uppercase;
         font-family: 'Montserrat', sans-serif;
+        color: #0c082b;
     }
         .preDrink {
             font-size: 1.05em;

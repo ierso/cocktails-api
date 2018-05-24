@@ -1,0 +1,11 @@
+.primary {
+    background: linear-gradient(90deg, #0094fe 0%, #31b7fe 41%, #86f0fe 75%);
+    padding: .35em 2em;
+    border-radius: 1em;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    &:hover {
+        
+    }
+}

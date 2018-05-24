@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   height: 100vh;
+  padding: 1em 0 0 0;
   background: linear-gradient(141deg, #fefeff 0%, #f2f4ff 51%, #f8f8ff 75%);
 }
   .wrapper {
     display: flex;
     justify-content: center;
-    border: black solid 1px;
     width: 100vw;
     max-width: 960px;
     position: relative;
@@ -15,7 +15,6 @@
   }
     .bgBlue {
       background: linear-gradient(90deg, #86f0fe 0%, #31b7fe 41%, #0094fe 75%);
-      border: blue solid 1px;
       border-radius: 2em;
       width: 65%;
       position: absolute;
@@ -26,7 +25,6 @@
       position: relative;
       z-index: 1;
       margin-top: 1.65em;
-      border: red solid 1px;
       padding: 2em;
       border-radius: 2em;
       height: 60vh;
