@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './searchDropdown.css';
 
 const SearchDropdown = (props) => {
 
@@ -7,17 +8,20 @@ const SearchDropdown = (props) => {
 
     if (matchedIngredients.length > 0) {
         return (
-            <React.Fragment>
+            <div className={styles.selection}>
+                <ul className={styles.list}>
                 {matchedIngredients.map((ingredient, index) => {
                     return (
-                        <div key={index}>
+                        <li key={index} className={styles.item}>
                             <Link to={`/ingredient/${ingredient.strIngredient1}`}>
                                 {ingredient.strIngredient1}
                             </Link>
-                        </div>
+                        </li>
                     )
                 })}
-            </React.Fragment>
+                </ul>
+                
+            </div>
         )
     } else {
         return (

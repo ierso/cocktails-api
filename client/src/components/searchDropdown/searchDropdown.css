@@ -1,0 +1,12 @@
+.selection {
+    border: black solid 1px;
+    padding: 1em 1em;
+    border-radius: 1em;
+}
+    .list {
+        margin: 0;
+        padding: 0;
+    }
+        .item {
+            list-style: none;
+        }
