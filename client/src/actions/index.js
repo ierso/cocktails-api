@@ -28,6 +28,7 @@ export const fetchCocktails = (ingredient) => async dispatch => {
 
 export const fetchCocktail = (cocktailId) => async dispatch => {
     const res = await axios.get(`${ROOT_URL}lookup.php?i=${cocktailId}`);
+    console.log(res)
     dispatch({ type: FETCH_COCKTAIL, payload: res.data.drinks[0] });
 }
 
@@ -36,9 +37,9 @@ export const fetchUser = () => async dispatch => {
     dispatch({ type: FETCH_USER, payload: res.data });
 }
 
-export const fetchSavedCocktails = () => async dispatch => {
+export const fetchFavorites = () => async dispatch => {
     const res = await axios.get('/cocktails');
-    console.log(res);
+    console.log(res.data);
     dispatch({ type: FETCH_SAVED_COCKTAILS, payload: res.data});
 }
 

@@ -13,6 +13,14 @@ export const findMatches = (wordToMatch, array) => {
     })
 }
 
+export const highestRatingFirst = (arr) => {
+    const newOrder = arr.sort(function(a, b){
+        return a.rating < b.rating;
+    })
+    return newOrder
+}
+  
+
 export const getMiddle = (arr) => Math.floor(arr.length / 2);
 
 export const halfArrays = (arr, middle) => {

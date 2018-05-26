@@ -7,6 +7,7 @@ import CocktailsList from './containers/cocktailList';
 import Header from './components/header/header';
 import Message from './components/message/message';
 import IngredientSearch from './containers/ingredientSearch';
+import Favorites from './containers/favorites/favorites';
 import NotFound from './components/notFound';
 
 import { AnimatedSwitch } from 'react-router-transition';
@@ -42,6 +43,7 @@ class App extends Component {
                     <Route exact path='/' component={ NotFound } />
                     <Route exact path='/ingredient/:name' component={ CocktailsList } />
                     <Route path='/cocktail/:id' component={ Cocktail } />
+                    <Route path='/favorites/' component={ Favorites } />
                     <Route component={ NotFound } />
                   </AnimatedSwitch>
                 </div>
