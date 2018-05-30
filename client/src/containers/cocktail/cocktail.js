@@ -31,7 +31,7 @@ class Cocktail extends Component {
             drinkID: drinkID,
             rating: 5,
         }
-        // this.props.addToFavorites(cocktailData);
+        this.props.addToFavorites(cocktailData);
     }
 
     onStarClick = (nextValue, prevValue, name) => {

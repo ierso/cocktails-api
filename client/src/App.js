@@ -22,14 +22,13 @@ class App extends Component {
   }
 
   render() {
-
     return (
         <div className={styles.body}>
           <Router>
             <div className={styles.wrapper}>
               <div className={styles.bgBlue}></div>
               <div className={styles.content}>
-                <Header />
+                <Header auth={this.props.auth}/>
                 <div className={styles.search}>
                   <Message/>
                   <IngredientSearch />

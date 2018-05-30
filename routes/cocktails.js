@@ -4,7 +4,7 @@ const router = express.Router();
 import Cocktail from '../models/cocktail';
 
 // get all
-router.get('/', (req, res) => {
+router.get('/', requireLogin, (req, res) => {
     //grab all of the objects in db
     Cocktail.find({ user: req.user.id })
         .sort({date: 'desc'})
@@ -47,7 +47,7 @@ router.post('/', requireLogin, ( req, res) => {
 });
 
 // update
-router.put('/:id', (req, res) => {
+router.put('/:id', requireLogin, (req, res) => {
     Cocktail.findById(req.params.id)
         .then((cocktail) => {
             const { name, drinkID, rating, date, user } = req.body;

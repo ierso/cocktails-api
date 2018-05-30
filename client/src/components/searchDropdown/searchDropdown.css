@@ -1,12 +1,24 @@
 .selection {
-    border: black solid 1px;
-    padding: 1em 1em;
-    border-radius: 1em;
+    
 }
     .list {
+        overflow: hidden;
+        border: #e8e8e8 solid 1px;
+        background: #fff;
         margin: 0;
         padding: 0;
+        border-radius: 1em;
     }
         .item {
             list-style: none;
+            
+            &:hover {
+                background: #ddd;
+            }
         }
+            .link {
+                padding: .5em 1em;
+                display: block;
+                text-decoration: none;
+                color: #0c082b;
+            }

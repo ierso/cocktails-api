@@ -14,11 +14,7 @@ router.get('/google/callback',
 });
 
 router.get('/verify', (req, res) => {
-    if (req.user) {
-        res.send(req.user);
-    } else {
-        res.send(null);
-    }
+    res.send(req.user);
 })
 
 router.get('/logout', (req, res) => {

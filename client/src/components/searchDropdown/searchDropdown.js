@@ -5,7 +5,7 @@ import styles from './searchDropdown.css';
 const SearchDropdown = (props) => {
 
     const matchedIngredients = props.matchedIngredients;
-
+    console.log(this.show)
     if (matchedIngredients.length > 0) {
         return (
             <div className={styles.selection}>
@@ -13,14 +13,15 @@ const SearchDropdown = (props) => {
                 {matchedIngredients.map((ingredient, index) => {
                     return (
                         <li key={index} className={styles.item}>
-                            <Link to={`/ingredient/${ingredient.strIngredient1}`}>
+                            <Link to={`/ingredient/${ingredient.strIngredient1}`}
+                                className={styles.link}
+                                onClick={props.resetInput}>
                                 {ingredient.strIngredient1}
                             </Link>
                         </li>
                     )
                 })}
                 </ul>
-                
             </div>
         )
     } else {

@@ -19,7 +19,6 @@ export const highestRatingFirst = (arr) => {
     })
     return newOrder
 }
-  
 
 export const getMiddle = (arr) => Math.floor(arr.length / 2);
 

@@ -5,9 +5,18 @@ import { fetchIngredients, matchIngredients } from '../actions';
 import SearchDropdown from '../components/searchDropdown/searchDropdown';
 
 class IngredientSearch extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            showDropdown: false
+        }
+    }
+    
     componentWillMount() {
         this.props.fetchIngredients();
     }
+
     onSearchChange = () => {
         const searchInput = {
             input: this.searchIngredient.value
@@ -18,10 +27,15 @@ class IngredientSearch extends Component {
         event.preventDefault();
         console.log('form submit');
     }
+
+    resetInput = () => {
+        console.log('reset')
+    }
+
     render() {
         return (
             <React.Fragment>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <input 
                         onChange={this.onSearchChange}
                         placeholder="Search by ingredient..." 
@@ -30,7 +44,11 @@ class IngredientSearch extends Component {
                         name="ingredient-search"
                         autoComplete="off"
                     />
-                    <SearchDropdown matchedIngredients={this.props.matchedIngredients}/>
+                    <SearchDropdown 
+                        matchedIngredients={this.props.matchedIngredients}
+                        resetInput={this.resetInput}
+                        show={this.input}
+                    />
                 </form>
             </React.Fragment>
         )

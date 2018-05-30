@@ -5,7 +5,7 @@ export default function(state = [], action) {
         case FETCH_COCKTAILS:
             return [
                 ...action.payload
-            ] 
+            ]
         default:
             return state;
     }
