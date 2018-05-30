@@ -9,7 +9,7 @@ import 'normalize.css';
 
 WebFont.load({
     google: {
-      families: ['Montserrat:400,500,800', 'Lato:400,700', 'sans-serif']
+      families: ['Montserrat:400,500,800', 'Open Sans:400, 600', 'Lato:400,700', 'sans-serif']
     }
 });
 

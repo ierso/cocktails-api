@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-flow: column;
+}
+    .input {
+        padding: .5em 1em;
+        border: #e8e8e8 solid 2px;
+        border-radius: 1em;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: .85em;
+        &:focus {
+            border: #0094fe solid 2px;
+            outline: none;
+        }
+        &::placeholder {
+            color: #d2d2d2;
+        }
+    }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchIngredients, matchIngredients } from '../actions';
-import SearchDropdown from '../components/searchDropdown/searchDropdown';
+import { fetchIngredients, matchIngredients } from '../../actions';
+import SearchDropdown from '../../components/searchDropdown/searchDropdown';
+import styles from './ingredientSearch.css';
 
 class IngredientSearch extends Component {
 
@@ -35,7 +36,7 @@ class IngredientSearch extends Component {
     render() {
         return (
             <React.Fragment>
-                <form onSubmit={this.onSubmit}>
+                <form className={styles.form} onSubmit={this.onSubmit}>
                     <input 
                         onChange={this.onSearchChange}
                         placeholder="Search by ingredient..." 
@@ -43,6 +44,7 @@ class IngredientSearch extends Component {
                         type="text" 
                         name="ingredient-search"
                         autoComplete="off"
+                        className={styles.input}
                     />
                     <SearchDropdown 
                         matchedIngredients={this.props.matchedIngredients}

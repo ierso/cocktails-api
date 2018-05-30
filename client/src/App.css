@@ -27,16 +27,27 @@
       margin-top: 1.65em;
       padding: 2em;
       border-radius: 2em;
-      height: 60vh;
+      height: 85vh;
       width: 100%;
       background: #fff;
+      box-shadow: 2px 3px 8px 0 rgba(0,0,0,0.08);
     }
-      .search {
-
+      .appWrapper {
+        margin-top: 1em;
+        border: blue solid 1px;
+        display: flex;
+        justify-content: space-between;
+        height: 80vh;
       }
-      .result {
-        
-      }
+        .search {
+          border: red solid 1px;
+          width: 50%;        
+        }
+        .result {
+          min-width: 300px;
+          border: black solid 1px;
+          /* border: #e8e8e8 solid 2px;   */
+        }
 
 
 
