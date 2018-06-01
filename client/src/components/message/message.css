@@ -1,4 +1,6 @@
 .wrapper {
+    display: flex;
+    justify-content: center;
 }
     .copy {
         font-weight: 800;

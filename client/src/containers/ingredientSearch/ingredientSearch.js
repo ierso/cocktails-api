@@ -23,14 +23,16 @@ class IngredientSearch extends Component {
             input: this.searchIngredient.value
         }
         this.props.matchIngredients(searchInput.input, this.props.ingredients);
+        if (searchInput.input.length > 0) {
+            this.setState({showDropdown: true})
+        } else {
+            this.setState({showDropdown: false})
+        }
+        
     }
     onSearchSubmit = (event) => {
         event.preventDefault();
         console.log('form submit');
-    }
-
-    resetInput = () => {
-        console.log('reset')
     }
 
     render() {
@@ -49,7 +51,7 @@ class IngredientSearch extends Component {
                     <SearchDropdown 
                         matchedIngredients={this.props.matchedIngredients}
                         resetInput={this.resetInput}
-                        show={this.input}
+                        show={this.state.showDropdown}
                     />
                 </form>
             </React.Fragment>

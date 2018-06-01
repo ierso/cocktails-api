@@ -1,6 +1,7 @@
 .form {
     display: flex;
     flex-flow: column;
+    position: relative;
 }
     .input {
         padding: .5em 1em;

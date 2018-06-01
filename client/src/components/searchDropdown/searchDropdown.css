@@ -1,5 +1,8 @@
 .selection {
-    margin-top: .5em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 2.5em;
 }
     .list {
         overflow: hidden;

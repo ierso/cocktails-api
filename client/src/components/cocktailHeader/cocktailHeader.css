@@ -1,7 +1,7 @@
 .header {
     border: blue solid 1px;
-    background-color: teal;
-    padding: 1.5em 1.5em;
+    background: linear-gradient(90deg, #86f0fe 0%, #31b7fe 41%, #0094fe 75%);
+    padding: .5em 1.5em;
 }
     .favorite {
 
@@ -24,7 +24,7 @@
         cursor: pointer;
         &:before {
             content: "\f004";
-            color: tomato;
+            color: #fff;
         }
     }
 }
