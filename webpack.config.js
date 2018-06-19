@@ -9,7 +9,7 @@ module.exports = {
       app: './index.js',
     },
     output: {
-      filename: 'app.js',
+      filename: 'app.bundle.js',
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'commonjs2',
     },
