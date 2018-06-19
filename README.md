@@ -1,7 +1,8 @@
 # COCKTAILS APP
 
-Backend: MongoDB, Express, Node, and Passport.
+Hosted: https://blooming-shelf-56585.herokuapp.com/
 
+Backend: MongoDB, Express, Node, and Passport.
 Frontend: React and Redux.
 
 ## Build & development
