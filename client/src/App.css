@@ -47,6 +47,8 @@
         .result {
           min-width: 300px;
           border: black solid 1px;
+          overflow: hidden;
+          overflow-y: auto;
           /* border: #e8e8e8 solid 2px;   */
         }
 

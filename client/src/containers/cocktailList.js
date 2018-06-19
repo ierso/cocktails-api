@@ -18,19 +18,20 @@ class CocktailList extends Component {
     }
     renderCocktails = () => {
         const cocktails = this.props.cocktails;
+        
         if (cocktails) {
             return (
-                <React.Fragment>
+                <ul>
                     {cocktails.map((cocktail, index)=>{
                         return (
-                            <div key={index}>
+                            <li key={index}>
                                 <Link to={`/cocktail/${cocktail.idDrink}`}>
                                     {cocktail.strDrink}
                                 </Link>
-                            </div>
+                            </li>
                         )
                     })}
-                </React.Fragment> 
+                </ul> 
             )
         } else {
             return (

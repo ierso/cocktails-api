@@ -22,8 +22,13 @@ export const highestRatingFirst = (arr) => {
 
 export const getMiddle = (arr) => Math.floor(arr.length / 2);
 
-export const halfArrays = (arr, middle) => {
-  const firstHalf = [...arr.slice(0, 1), ...arr.slice(1, middle)]
-  const secondHalf = [...arr.slice(middle, 0), ...arr.slice(middle)]
-  return [...[firstHalf], ...[secondHalf]];
+export const halfArrays = (arr) => {
+    if (arr.length >= 28) {
+        let middle = Math.floor(arr.length / 2);
+        const firstHalf = [...arr.slice(0, 1), ...arr.slice(1, middle)]
+        const secondHalf = [...arr.slice(middle, 0), ...arr.slice(middle)]
+        return [...[firstHalf], ...[secondHalf]];
+    } else {
+        return arr;
+    }
 }
