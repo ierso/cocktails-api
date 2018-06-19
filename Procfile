@@ -1,1 +1,1 @@
-web: node dist/app.bundle.js
+web: node app.js
