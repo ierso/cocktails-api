@@ -43,7 +43,6 @@ app.use('/auth', auth);
 app.use('/cocktails', cocktails);
 
 if (process.env.NODE_ENV === "production") {
-    console.log('production mode');
     app.disable('x-powered-by');
     
     app.use(express.static("client/build"));
