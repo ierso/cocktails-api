@@ -45,7 +45,7 @@ app.use('/cocktails', cocktails);
 if (process.env.NODE_ENV === "production") {
     app.disable('x-powered-by');
     
-    app.use(express.static("../client/build"));
+    app.use(express.static("client/build"));
 
     const path = require("path");
     app.get("*", (req, res) => {
