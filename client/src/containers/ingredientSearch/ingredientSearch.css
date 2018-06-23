@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: column;
     position: relative;
+    margin-top: 1em;
 }
     .input {
         padding: .5em 1em;

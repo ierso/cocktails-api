@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCocktail, addToFavorites } from '../../actions';
-import IngredientMeasurements from '../../components/ingredientMeasurements';
+import IngredientMeasurements from '../../components/ingredientMeasurements/ingredientMeasurements';
 import CocktailHeader from '../../components/cocktailHeader/cocktailHeader';
 import CocktailInstructions from '../../components/cocktailInstructions/cocktailInstructions';
 

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCocktails } from '../actions';
+import { fetchCocktails } from '../../actions';
+import styles from './cocktailList.css';
 
 class CocktailList extends Component {
 
@@ -21,11 +22,11 @@ class CocktailList extends Component {
         
         if (cocktails) {
             return (
-                <ul>
+                <ul className={ styles.list }>
                     {cocktails.map((cocktail, index)=>{
                         return (
-                            <li key={index}>
-                                <Link to={`/cocktail/${cocktail.idDrink}`}>
+                            <li key={index} className={ styles.listItem }>
+                                <Link to={`/cocktail/${cocktail.idDrink}`} className={ styles.listLink }>
                                     {cocktail.strDrink}
                                 </Link>
                             </li>
@@ -42,7 +43,7 @@ class CocktailList extends Component {
     render() {
         return (
             <React.Fragment>
-                Cocktail List
+                <h3 className={ styles.title }>Cocktail List</h3>
                 {this.renderCocktails()}
             </React.Fragment>
         )

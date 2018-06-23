@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUser } from './actions';
 import Cocktail from './containers/cocktail/cocktail';
-import CocktailsList from './containers/cocktailList';
+import CocktailsList from './containers/cocktailList/cocktailList';
 import Header from './components/header/header';
+import Home from './components/home/home';
 import Message from './components/message/message';
 import IngredientSearch from './containers/ingredientSearch/ingredientSearch';
 import Favorites from './containers/favorites/favorites';
@@ -23,35 +24,37 @@ class App extends Component {
 
   render() {
     return (
-        <div className={styles.body}>
-          <Router>
-            <div className={styles.wrapper}>
-              <div className={styles.bgBlue}></div>
-              <div className={styles.content}>
-                <Header auth={this.props.auth}/>
-                <div className={styles.appWrapper}>
-                  <div className={styles.search}>
+      <div className={ styles.body }>
+        <Router>
+          <div className={ styles.wrapper }>
+            <div className={ styles.bgBlue }></div>
+            <div className={ styles.content }>
+              <Header auth={ this.props.auth }/>
+              <div className={ styles.appWrapper }>
+                <div className={ styles.search }>
+                  <div className={ styles.searchCenter }>
                     <Message/>
                     <IngredientSearch />
                   </div>
-                  <div className={styles.result}>
-                    <AnimatedSwitch
-                      {...pageTransitions}
-                      mapStyles={mapStyles}
-                      className={styles.switchRule}
-                    >
-                      <Route exact path='/' component={ NotFound } />
-                      <Route exact path='/ingredient/:name' component={ CocktailsList } />
-                      <Route path='/cocktail/:id' component={ Cocktail } />
-                      <Route path='/favorites/' component={ Favorites } />
-                      <Route component={ NotFound } />
-                    </AnimatedSwitch>
-                  </div>
+                </div>
+                <div className={ styles.result }>
+                  <AnimatedSwitch
+                    { ...pageTransitions }
+                    mapStyles={ mapStyles }
+                    className={ styles.switchRule }
+                  >
+                    <Route exact path='/' component={ Home } />
+                    <Route exact path='/ingredient/:name' component={ CocktailsList } />
+                    <Route path='/cocktail/:id' component={ Cocktail } />
+                    <Route path='/favorites/' component={ Favorites } />
+                    <Route component={ NotFound } />
+                  </AnimatedSwitch>
                 </div>
               </div>
             </div>
-          </Router>
-        </div>
+          </div>
+        </Router>
+      </div>
     );
   }
 }
