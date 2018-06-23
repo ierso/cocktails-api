@@ -2,8 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: #dddd solid 1px;
-    
 }
     .brand {
         

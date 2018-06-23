@@ -1,0 +1,16 @@
+.wrapper {
+  padding: 1em;
+}
+  .list {
+    margin: 0;
+    padding: 0;
+  }
+    .listItem {
+      list-style: none;
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      padding: .25em 0;
+    }
+      .measurement {
+        font-weight: 700;
+      }

@@ -1,22 +1,27 @@
 .header {
-    border: blue solid 1px;
-    background: linear-gradient(90deg, #86f0fe 0%, #31b7fe 41%, #0094fe 75%);
+    background: linear-gradient(90deg, #0094fe 0%, #31b7fe 41);
     padding: .5em 1.5em;
+    display: flex;
+    flex-flow: column;
 }
     .favorite {
-
+      display: flex;
     }
     .name {
     }
         .name__copy {
-
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+          color: #fff;
+          margin: 0;
         }
     .rating {
-        
+      margin-top: .5em;
     }
 
 .heart {
     font-size: 1.35em;
+    margin-left: auto;
     &:before {
         content: "\f08a";
     }
