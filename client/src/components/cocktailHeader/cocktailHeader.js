@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './cocktailHeader.css';
 import FontAwesome from 'react-fontawesome';
 import StarRating from 'react-star-rating-component';
+import CocktailGlass from '../../components/cocktailGlass/cocktailGlass';
 
 export default function(props) {
     return (
@@ -26,6 +27,7 @@ export default function(props) {
                     value={props.rating}
                     onStarClick={props.onStarClick.bind(this)}
                 />
+                <CocktailGlass glass={props.glass}/>
                 </div>
             </div>
         </React.Fragment>

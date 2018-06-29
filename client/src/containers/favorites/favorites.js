@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchFavorites } from '../../actions';
 import { Link } from 'react-router-dom';
+import styles from './favorites.css';
 
 class Favorites extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.auth) {
             console.log('logged in');
             this.props.fetchFavorites();
@@ -35,15 +36,20 @@ class Favorites extends Component {
     renderFavorites = () => {
         const favorites = this.props.favorites;
         return (
-            favorites.map((cocktail)=>{
+          <ul className={ styles.list }>
+            {favorites.map((cocktail, index)=>{
                 return (
+                  <li key={ index } className={ styles.listItem }>
                     <Link 
-                        to={`/cocktail/${cocktail.drinkID}`} 
-                        key={cocktail.drinkID}>
-                        {cocktail.name}
+                        to={ `/cocktail/${cocktail.drinkID}` } 
+                        key={ cocktail.drinkID }
+                        className={ styles.listLink }>
+                        { cocktail.name }
                     </Link>
+                  </li>
                 )
-            })
+            })}
+          </ul>
         )
     }
 
@@ -51,8 +57,8 @@ class Favorites extends Component {
         console.log(this.props.auth);
         return (
             <React.Fragment>
-                Favorites
-                {this.authenticated()}
+                <h3 className={ styles.title }>Favorites</h3>
+                { this.authenticated() }
             </React.Fragment>
         )
     }

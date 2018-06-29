@@ -18,7 +18,7 @@ class Cocktail extends Component {
         }
     }
     
-    componentWillMount() {
+    componentDidMount() {
         const paramId = this.props.match.params.id
         this.props.fetchCocktail(paramId);
     }
@@ -51,9 +51,9 @@ class Cocktail extends Component {
                         cocktailName={cocktail.strDrink}
                         rating={this.state.rating}
                         onStarClick={this.onStarClick}
+                        glass={cocktail.strGlass}
                     />
                     <IngredientMeasurements cocktail={cocktail}/>
-                    <h4>Glass: {cocktail.strGlass}</h4>
                     
                     <CocktailInstructions instruction={cocktail.strInstructions} />
                     

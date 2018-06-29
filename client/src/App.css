@@ -50,14 +50,11 @@
           }
         .result {
           min-width: 300px;
-          border: black solid 1px;
           overflow: hidden;
           overflow-y: auto;
-          /* border: #e8e8e8 solid 2px;   */
+          box-shadow: 2px 3px 8px 0 rgba(0,0,0,0.08);
+          border: #e8e8e8 solid 1px;
         }
-
-
-
 
 /* .switch-wrapper {
   position: relative;
