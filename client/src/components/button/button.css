@@ -5,16 +5,8 @@
     color: #fff;
     text-decoration: none;
     font-family: 'Lato', sans-serif;
+    transition: .5s ease;
     &:hover {
-      animation: button__bthHover___1jvCn .75s forwards 0s ease;
+      background: #31b7fe;
     }
-}
-
-@keyframes button__bthHover___1jvCn{
-  0% {
-    background: #0094fe;
-  }
-  100% {
-    background: #31b7fe;
-  }
 }

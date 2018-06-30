@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../button/button';
 import styles from './header.css';
+import { style } from 'glamor';
 
 export default function(props) {
 
@@ -32,17 +33,17 @@ const renderLogin = () => {
 }
 
   return (
-    <nav className={styles.nav}>
-      <div className={styles.brand}>
-        <Link to="/" className={styles.name}>Nights Drink</Link>
+    <nav className={ styles.nav }>
+      <div className={ styles.brand }>
+        <Link to="/" className={ styles.name }>Nights Drink</Link>
       </div>
       
-      <div className={styles.navigation}>
-        <ul className={styles.list}>
-          <li className={styles.item}>
+      <div className={ styles.navigation }>
+        <ul className={ styles.list }>
+          <li className={ styles.item }>
             <Link to="/favorites" className={styles.link}>Favorites</Link>
           </li>
-          <li className={styles.item}>
+          <li className={ styles.itemBtn }>
             { renderLogin() }
           </li>
         </ul>
