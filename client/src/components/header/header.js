@@ -2,35 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../button/button';
 import styles from './header.css';
-import { style } from 'glamor';
 
 export default function(props) {
 
-const renderLogin = () => {
-  switch(props.auth) {
-    case null:
-      return (
-        <Button
-          path="/auth/google"
-          message="Log in">
-        </Button>
-      )
-    case false:
-      return (
-        <Button
-          path="/auth/google"
-          message="Log in">
-        </Button>
-      )  
-    default:
-      return (
-        <Button
-          path="/auth/logout"
-          message="Log out">
-        </Button>
-      )
+  const renderLogin = () => {
+    switch(props.auth) {
+      case null:
+        return (
+          <Button
+            path="/auth/google"
+            message="Log in">
+          </Button>
+        )
+      case false:
+        return (
+          <Button
+            path="/auth/google"
+            message="Log in">
+          </Button>
+        )  
+      default:
+        return (
+          <Button
+            path="/auth/logout"
+            message="Log out">
+          </Button>
+        )
+    }
   }
-}
 
   return (
     <nav className={ styles.nav }>
