@@ -7,6 +7,12 @@
   .favorite {
     display: flex;
   }
+  .message {
+    font-family: 'Lato', sans-serif;
+    color: #fff;
+    font-weight: 400;
+    font-size: .85em;
+  }
   .name {
   }
     .name__copy {

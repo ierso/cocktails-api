@@ -14,7 +14,8 @@ class Cocktail extends Component {
     super();
     this.state = {
       rating: null,
-      saved: false
+      saved: false,
+      favoriteMessage: null
     }
   }
   
@@ -37,11 +38,12 @@ class Cocktail extends Component {
     if (this.state.saved === true) {
       const savedCocktailId = this.props.savedCocktail.id
       this.props.removeSavedCocktail(savedCocktailId);
+      this.setState({
+        favoriteMessage: 'Removed from favorites',
+        saved: false
+      })
     // else do the stuff below
     } else {
-      this.setState({
-        saved: true
-      })
       const { strDrink: name, idDrink:drinkID } = this.props.cocktail;
       const cocktailData = {
         name: name,
@@ -49,6 +51,10 @@ class Cocktail extends Component {
         rating: this.state.rating,
       }
       this.props.addToFavorites(cocktailData);
+      this.setState({
+        favoriteMessage: 'Added to favorites',
+        saved: true
+      })
     }
   }
 
@@ -73,6 +79,7 @@ class Cocktail extends Component {
             cocktailName={ cocktail.strDrink }
             saved={ this.state.saved }
             rating={ this.state.rating }
+            message={ this.state.favoriteMessage }
             onStarClick={ this.onStarClick }
             glass={ cocktail.strGlass }
           />
