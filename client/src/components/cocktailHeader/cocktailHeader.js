@@ -5,31 +5,32 @@ import StarRating from 'react-star-rating-component';
 import CocktailGlass from '../../components/cocktailGlass/cocktailGlass';
 
 export default function(props) {
-    return (
-        <React.Fragment>
-            <div className={styles.header}>
-                <div className={styles.favorite}>
-                    <FontAwesome
-                        onClick={props.clickFavorite}
-                        className={styles.heart}
-                        name='heart'
-                    />
-                </div>
-                <div className={styles.name}>
-                    <h1 className={styles.name__copy}>
-                        {props.cocktailName}
-                    </h1>
-                </div>
-                <div className={styles.rating}>
-                <StarRating 
-                    name="rate1" 
-                    starCount={5}
-                    value={props.rating}
-                    onStarClick={props.onStarClick.bind(this)}
-                />
-                <CocktailGlass glass={props.glass}/>
-                </div>
-            </div>
-        </React.Fragment>
-    )
+  return (
+    <React.Fragment>
+      <div className={ styles.header }>
+        <div className={ styles.favorite }>
+          <span>Saved</span>
+          <FontAwesome
+            onClick={ props.clickFavorite }
+            className={ props.saved ? styles.heartActive : styles.heart }
+            name='heart'
+          />
+        </div>
+        <div className={ styles.name }>
+          <h1 className={ styles.name__copy }>
+            { props.cocktailName }
+          </h1>
+        </div>
+        <div className={ styles.rating }>
+          <StarRating 
+            name="rate1" 
+            starCount={ 5 }
+            value={ props.rating }
+            onStarClick={ props.onStarClick.bind(this) }
+          />
+          <CocktailGlass glass={ props.glass }/>
+        </div>
+      </div>
+    </React.Fragment>
+  )
 }

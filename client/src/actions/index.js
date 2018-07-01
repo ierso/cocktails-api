@@ -1,11 +1,12 @@
-import { 
-    FETCH_COCKTAIL, 
-    FETCH_COCKTAILS, 
-    FETCH_INGREDIENTS,
-    FETCH_SAVED_COCKTAIL,
-    FETCH_SAVED_COCKTAILS, 
-    FETCH_USER, 
-    MATCH_INGREDIENTS 
+import {
+  DELETE_SAVED_COCKTAIL,
+  FETCH_COCKTAIL, 
+  FETCH_COCKTAILS, 
+  FETCH_INGREDIENTS,
+  FETCH_SAVED_COCKTAIL,
+  FETCH_SAVED_COCKTAILS, 
+  FETCH_USER, 
+  MATCH_INGREDIENTS 
 } from './types';
 
 import { findMatches, returnMax } from '../helpers';
@@ -47,16 +48,25 @@ export const fetchSavedCocktail = (cocktailId) => async dispatch => {
   let savedCocktail = {};
   if ( res.data.length === 0) {
     savedCocktail = {
+      id: null,
       rating: null,
       saved: false  
     }
   } else {
     savedCocktail = {
+      id: res.data[0]._id,
       rating: res.data[0].rating,
       saved: true
     }
   }
   dispatch({ type: FETCH_SAVED_COCKTAIL, payload: savedCocktail })
+}
+
+export const removeSavedCocktail = (cocktailId) => dispatch => {
+  // passing in the wrong id
+  axios.delete(`/cocktails/${ cocktailId }`);
+  console.log('remove saved');
+  dispatch( {type: DELETE_SAVED_COCKTAIL });
 }
 
 export const matchIngredients = (searchInput, array) => dispatch => {

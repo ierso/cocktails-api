@@ -1,39 +1,54 @@
 .header {
-    background: linear-gradient(90deg, #0094fe 0%, #31b7fe 41);
-    padding: .5em 1.25em;
-    display: flex;
-    flex-flow: column;
+  background: linear-gradient(90deg, #0094fe 0%, #31b7fe 41);
+  padding: .5em 1.25em;
+  display: flex;
+  flex-flow: column;
 }
-    .favorite {
-      display: flex;
+  .favorite {
+    display: flex;
+  }
+  .name {
+  }
+    .name__copy {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      color: #fff;
+      margin: 0;
     }
-    .name {
-    }
-        .name__copy {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 400;
-          color: #fff;
-          margin: 0;
-        }
-    .rating {
-      margin-top: .5em;
-      display: flex;
-      justify-content: space-between;
-    }
+  .rating {
+    margin-top: .5em;
+    display: flex;
+    justify-content: space-between;
+  }
 
 .heart {
-    font-size: 1.35em;
-    margin-left: auto;
-    
+  font-size: 1.35em;
+  margin-left: auto;
+  &:before {
+    content: "\f08a";
+    transition: .3s ease;
+  }
+  &:hover {
+    cursor: pointer;
     &:before {
-        content: "\f08a";
-        transition: .3s ease;
+      content: "\f004";
+      color: #fff;
     }
-    &:hover {
-        cursor: pointer;
-        &:before {
-            content: "\f004";
-            color: #fff;
-        }
+  }
+}
+
+.heartActive {
+  font-size: 1.35em;
+  margin-left: auto;
+  &:before {
+    content: "\f004";
+    color: #fff;
+    transition: .3s ease;
+  }
+  &:hover {
+    cursor: pointer;
+    &:before {
+      content: "\f08a";
     }
+  }
 }
