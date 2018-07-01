@@ -1,15 +1,28 @@
 .wrapper {
-  padding: 1em;
+  padding: 1.25em;
 }
-  .list {
+  .title {
     margin: 0;
+    padding-bottom: .25em;
+    border-bottom-width: .10em;
+    border-bottom-style: dotted;
+    border-color: #c9c9ce;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #0c082b;
+    font-size: 1.25em;
+  }
+  .list {
+    margin: 1em 0;
     padding: 0;
   }
     .listItem {
       list-style: none;
       font-family: 'Lato', sans-serif;
+      color: #0c082b;
       font-weight: 400;
       padding: .25em 0;
+      font-size: .9em;
     }
       .measurement {
         font-weight: 700;

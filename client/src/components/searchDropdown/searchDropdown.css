@@ -6,7 +6,7 @@
 }
     .list {
         overflow: hidden;
-        border: #e8e8e8 solid 2px;
+        border: #e8e8e8 solid 1px;
         background: #fff;
         margin: 0;
         padding: 0;
@@ -25,6 +25,6 @@
                 font-weight: 300;
                 color: #0c082b;
                 &:hover {
-                    background: #eee;
+                    background: #f2f4ff;
                 }
             }

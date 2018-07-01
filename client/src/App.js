@@ -18,7 +18,7 @@ import styles from './App.css';
 
 class App extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchUser();
   }
 

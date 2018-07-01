@@ -19,6 +19,7 @@ export default function(props) {
     });
     return (
       <div className={ styles.wrapper }>
+        <h2 className={styles.title}>Instructions</h2>
         <ul className={ styles.list }>
         {
           ingredients.map(function(value, index){

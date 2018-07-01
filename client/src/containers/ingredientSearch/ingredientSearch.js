@@ -14,7 +14,7 @@ class IngredientSearch extends Component {
         }
     }
     
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchIngredients();
     }
 

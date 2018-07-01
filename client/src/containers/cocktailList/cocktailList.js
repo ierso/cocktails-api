@@ -7,7 +7,7 @@ import styles from './cocktailList.css';
 
 class CocktailList extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const ingredient = this.props.match.params.name;
         this.props.fetchCocktails(ingredient);
     }

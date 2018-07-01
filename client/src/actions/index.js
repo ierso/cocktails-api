@@ -1,10 +1,12 @@
-import { 
-    FETCH_COCKTAIL, 
-    FETCH_COCKTAILS, 
-    FETCH_INGREDIENTS,
-    FETCH_SAVED_COCKTAILS, 
-    FETCH_USER, 
-    MATCH_INGREDIENTS 
+import {
+  DELETE_SAVED_COCKTAIL,
+  FETCH_COCKTAIL, 
+  FETCH_COCKTAILS, 
+  FETCH_INGREDIENTS,
+  FETCH_SAVED_COCKTAIL,
+  FETCH_SAVED_COCKTAILS, 
+  FETCH_USER, 
+  MATCH_INGREDIENTS 
 } from './types';
 
 import { findMatches, returnMax } from '../helpers';
@@ -28,7 +30,6 @@ export const fetchCocktails = (ingredient) => async dispatch => {
 
 export const fetchCocktail = (cocktailId) => async dispatch => {
     const res = await axios.get(`${ROOT_URL}lookup.php?i=${cocktailId}`);
-    console.log(res)
     dispatch({ type: FETCH_COCKTAIL, payload: res.data.drinks[0] });
 }
 
@@ -39,12 +40,33 @@ export const fetchUser = () => async dispatch => {
 
 export const fetchFavorites = () => async dispatch => {
     const res = await axios.get('/cocktails');
-    console.log(res.data);
     dispatch({ type: FETCH_SAVED_COCKTAILS, payload: res.data});
 }
 
 export const fetchSavedCocktail = (cocktailId) => async dispatch => {
-    
+  const res = await axios.get(`/cocktails/${ cocktailId }`);
+  let savedCocktail = {};
+  if ( res.data.length === 0) {
+    savedCocktail = {
+      id: null,
+      rating: null,
+      saved: false  
+    }
+  } else {
+    savedCocktail = {
+      id: res.data[0]._id,
+      rating: res.data[0].rating,
+      saved: true
+    }
+  }
+  dispatch({ type: FETCH_SAVED_COCKTAIL, payload: savedCocktail })
+}
+
+export const removeSavedCocktail = (cocktailId) => dispatch => {
+  // passing in the wrong id
+  axios.delete(`/cocktails/${ cocktailId }`);
+  console.log('remove saved');
+  dispatch( {type: DELETE_SAVED_COCKTAIL });
 }
 
 export const matchIngredients = (searchInput, array) => dispatch => {
