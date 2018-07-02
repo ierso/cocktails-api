@@ -8,8 +8,12 @@ export default function(props) {
   return (
     <React.Fragment>
       <div className={ styles.header }>
-        <div className={ styles.favorite }>
-          <span>Saved</span>
+        <div className={ styles.favorite }> 
+          { 
+            props.message 
+            ? <span className={ styles.message }>{ props.message }</span> 
+            : null 
+          }
           <FontAwesome
             onClick={ props.clickFavorite }
             className={ props.saved ? styles.heartActive : styles.heart }
