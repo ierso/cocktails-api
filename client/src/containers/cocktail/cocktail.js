@@ -34,8 +34,13 @@ class Cocktail extends Component {
   }
 
   clickFavorite = () => {
+    // if not logged in 
+    
+
     // if already favortied - unfavorite
     if (this.state.saved === true) {
+      // break out into function
+
       const savedCocktailId = this.props.savedCocktail.id
       this.props.removeSavedCocktail(savedCocktailId);
       this.setState({
@@ -44,6 +49,7 @@ class Cocktail extends Component {
       })
     // else do the stuff below
     } else {
+      // break out into function
       const { strDrink: name, idDrink:drinkID } = this.props.cocktail;
       const cocktailData = {
         name: name,

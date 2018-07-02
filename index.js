@@ -10,6 +10,12 @@ import cocktails from './routes/cocktails';
 const { databaseUrl, port } = config;
 
 const app = express();
+
+app.use(function(req, res, next) {
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
+});
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
