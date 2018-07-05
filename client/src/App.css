@@ -13,6 +13,13 @@
     position: relative;
     padding: 0 1.65em 1.65em 1.65em;
   }
+  .wrapperMobile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    padding: 0;
+  }
     .bgBlue {
       background: linear-gradient(90deg, #86f0fe 0%, #31b7fe 41%, #0094fe 75%);
       border-radius: 2em;
