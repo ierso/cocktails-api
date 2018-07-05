@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
-import unregister from './registerServiceWorker';
 import WebFont from 'webfontloader';
 import 'normalize.css';
 
@@ -19,4 +18,3 @@ ReactDOM.render(
         <App/>
     </Provider>,
     document.getElementById('root'));
-    unregister();
