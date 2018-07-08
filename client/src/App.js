@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchUser } from './actions';
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import Cocktail from './containers/cocktail/cocktail';
 import CocktailsList from './containers/cocktailList/cocktailList';
 import Header from './components/header/header';
@@ -61,29 +61,28 @@ class App extends Component {
 
   renderMobileApp = () => {
     return (
-        <Router>
-          <div className={ styles.wrapperMobile }>
-            <div className={ styles.content }>
-              <Header auth={ this.props.auth }/>
-              <div className={ styles.appWrapper }>
-                <div className={ styles.result }>
-                  <AnimatedSwitch
-                    { ...pageTransitions }
-                    mapStyles={ mapStyles }
-                    className={ styles.switchRule }
-                  >
-                    <Route exact path='/' component={ Home } />
-                    <Route exact path='/ingredient/:name' component={ CocktailsList } />
-                    <Route path='/cocktail/:id' component={ Cocktail } />
-                    <Route path='/favorites/' component={ Favorites } />
-                    <Route component={ NotFound } />
-                  </AnimatedSwitch>
-                </div>
+      <Router>
+        <div className={ styles.wrapperMobile }>
+          <div className={ styles.contentMobile }>
+            <Header auth={ this.props.auth }/>
+            <div className={ styles.appWrapperMobile }>
+              <div className={ styles.resultMobile }>
+                <AnimatedSwitch
+                  { ...pageTransitions }
+                  mapStyles={ mapStyles }
+                  className={ styles.switchRule }
+                >
+                  <Route exact path='/' component={ Home } />
+                  <Route exact path='/ingredient/:name' component={ CocktailsList } />
+                  <Route path='/cocktail/:id' component={ Cocktail } />
+                  <Route path='/favorites/' component={ Favorites } />
+                  <Route component={ NotFound } />
+                </AnimatedSwitch>
               </div>
             </div>
           </div>
-        </Router>
-      
+        </div>
+      </Router>
     ); 
   }
 
